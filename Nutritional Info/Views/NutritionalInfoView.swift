@@ -12,15 +12,6 @@ class NutritionalInfoView: UIView {
         caloriesView.updateView(title: data.title, value: data.calories)
         percentagesView.updateView(carbs: data.carbs, protein: data.protein, fat: data.fat)
     }
-    
-    let moreInfoButton: UIButton = {
-        let button = UIButton.init(type: .system)
-        button.setTitle("More Info", for: .normal)
-        button.setTitleColor(.white, for: [])
-        button.titleLabel?.font = .boldSystemFont(ofSize: 24)
-        button.backgroundColor = .moreInfoButtonColor
-        return button
-    }()
         
     func startLoading() {
         self.moreInfoButton.isEnabled = false
@@ -70,21 +61,30 @@ class NutritionalInfoView: UIView {
         super.layoutSubviews()
         moreInfoButton.layer.cornerRadius = 36
     }
-    
-    //MARK: Private members
-    
-    private let caloriesView: CaloriesView = {
+        
+   let caloriesView: CaloriesView = {
         let gradientColors = [UIColor.gradientStartColor, UIColor.gradientEndColor].compactMap { $0 }
         return CaloriesView(description: "Calories per serving", borderWidth: 15, borderColor: .clear, gradientColors: gradientColors)
     }()
-    
-    private let percentagesView = PercentagesView()
-    
-    private lazy var errorLabel: UILabel = {
+        
+    private(set) lazy var errorLabel: UILabel = {
         let label = LabelView(color: .systemPink, fontSize: 20)
         label.numberOfLines = 0
         return label
     }()
+    
+    let percentagesView = PercentagesView()
+    
+    let moreInfoButton: UIButton = {
+        let button = UIButton.init(type: .system)
+        button.setTitle("More Info", for: .normal)
+        button.setTitleColor(.white, for: [])
+        button.titleLabel?.font = .boldSystemFont(ofSize: 24)
+        button.backgroundColor = .moreInfoButtonColor
+        return button
+    }()
+
+    //MARK: Private members
 
     private func addSubviews() {
         [caloriesView, moreInfoButton, percentagesView, errorLabel]

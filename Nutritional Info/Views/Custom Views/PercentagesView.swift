@@ -27,13 +27,13 @@ class PercentagesView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+        
+    private(set) lazy var carbsValueLabel: UILabel = LabelView(fontSize: 20)
+    private(set) lazy var proteinValueLabel: UILabel = LabelView(fontSize: 20)
+    private(set) lazy var fatValueLabel: UILabel = LabelView(fontSize: 20)
     
     //MARK: Private members
-    
-    private lazy var carbsValueLabel: UILabel = LabelView(fontSize: 20)
-    private lazy var proteinValueLabel: UILabel = LabelView(fontSize: 20)
-    private lazy var fatValueLabel: UILabel = LabelView(fontSize: 20)
-    
+
     private let hStack: UIStackView = {
         let hStack = UIStackView()
         hStack.axis = .horizontal

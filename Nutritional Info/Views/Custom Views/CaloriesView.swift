@@ -23,22 +23,22 @@ class CaloriesView: CircleView {
         self.titleLabel.text = title
         self.caloriesLabel.text = value
     }
-    
-    //MARK: Private members
-    
-    private lazy var titleLabel: UILabel = {
+        
+    private(set) lazy var titleLabel: UILabel = {
         let label = LabelView(color: .white, fontSize: 24)
         label.adjustsFontSizeToFitWidth = true
         return label
     }()
+    
+    private(set) lazy var caloriesLabel: UILabel = LabelView(color: .white, fontSize: 55)
+    
+    //MARK: Private members
     
     private let seperator: UIView = {
         let view = UIView()
         view.backgroundColor = .white
         return view
     }()
-    
-    private lazy var caloriesLabel: UILabel = LabelView(color: .white, fontSize: 50)
     
     private lazy var caloriesDescription: UILabel = {
         let label = UILabel()

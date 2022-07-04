@@ -9,7 +9,7 @@ import UIKit
 import Combine
 
 class MainViewController: UIViewController {
-    private var mainView = NutritionalInfoView()
+    private(set) var mainView = NutritionalInfoView()
     private var cancellables = Set<AnyCancellable>()
     private var viewModel: NutritionalInfoViewModel
     
@@ -35,14 +35,10 @@ class MainViewController: UIViewController {
     
     private func bind() {
         viewModel.$nutritionalInfo
-            .sink(receiveCompletion: {
-                print($0)
-            }, receiveValue: { [ weak self] nutritionalInformation in
+            .sink { [ weak self] nutritionalInformation in
                 self?.mainView.update(data: nutritionalInformation)
-            })
+            }
             .store(in: &cancellables)
-        
-
         
         viewModel.$state
             .receive(on: RunLoop.main)
@@ -77,4 +73,3 @@ extension MainViewController {
         fetchRandomNutritionalInfo()
     }
 }
-
