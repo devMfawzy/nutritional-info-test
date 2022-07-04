@@ -30,7 +30,7 @@ struct NutritionalInfoRepresenter: NutritionalInfoRepresentable {
     private(set) var fat: String
     
     init(model: NutritionalInformation) {
-        self.title = model.title
+        self.title = model.title.uppercased()
         self.calories = String(model.calories)
         self.carbs = NutritionalInfoRepresenter.string(from: model.carbs)
         self.protein = NutritionalInfoRepresenter.string(from: model.protein)
